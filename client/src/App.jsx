@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
+import Footer from './Components/Footer'
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/' element={<Home />} />
       </Routes>
        </div>
+       <Footer />
     </div>
   )
 }

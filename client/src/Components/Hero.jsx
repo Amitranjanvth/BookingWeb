@@ -9,7 +9,7 @@ const Hero = () => {
 
       <h1 className='font-playfair text-2xl md:text-5xl xl:text-[56px] md:leading-56px font-bold md:font-extrabold max-w-xl mt-3'></h1>
 
-      <p className='max-w-[130px] mt-2 text-sm md:text-base'>hello</p>
+      <p className='max-w-5 mt-2 text-sm md:text-base'>hello</p>
 
 
 
