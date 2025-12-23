@@ -1,10 +1,19 @@
-import React from 'react'
+import { useState } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import './App.css'
 import Navbar from './Components/Navbar'
 
-const App = () => {
+
+
+
+
+function App() {
+  const [count, setCount] = useState(0)
+  const isOwnerPath = useLocation().pathname.includes("/owner");
+
   return (
     <div>
-      <Navbar />
+       {!isOwnerPath && <Navbar />}
     </div>
   )
 }
