@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import Footer from './Components/Footer'
 import Allrooms from './Pages/Allrooms'
+import RoomDetails from './Pages/RoomDetails'
 
 
 
@@ -22,6 +23,7 @@ function App() {
           <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/rooms' element={<Allrooms />} />
+        <Route path='/rooms/:id' element={<RoomDetails />} />
       </Routes>
        </div>
        <Footer />
