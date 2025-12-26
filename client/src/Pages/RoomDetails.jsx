@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {assets, facilityIcons, roomsDummyData} from '../assets/assets.js';
+import {assets, facilityIcons, roomCommonData, roomsDummyData} from '../assets/assets.js';
 import StarRating from '../Components/StarRating.jsx';
 
 
@@ -109,6 +109,35 @@ const RoomDetails = () => {
                 <span>Search</span>
             </button>
         </form>
+
+        <div className='mt-25 space-y-4'>
+            {roomCommonData.map((data, index) => (
+                <div key={index} className='flex items-start gap-2'>
+                    <img className='w-6' src={data.icon} alt={data.title} />
+                    <div>
+                    <h2 className='text-xl font-medium mb-2'>{data.title}</h2>
+                    <p className='text-gray-500'>{data.description}</p>
+                    </div>
+                </div>
+            ))}
+
+        </div>
+        <div className='max-w-3xl border-y-2 py-3 border-gray-300 text-gray-500 mt-5'>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore rerum soluta corrupti? Autem a, nesciunt voluptates saepe magnam earum mollitia perferendis eaque hic distinctio necessitatibus laudantium dolor obcaecati, enim non quo omnis fugit pariatur tenetur ullam neque explicabo dolore ad?</p>
+        </div>
+        <div className='flex flex-col items-start gap-4'>
+            <div className='gap-4'>
+                <img className='h-14 w-14 md:h-18 md:w-18 rounded-full' src={room.hotel.owner.image} alt="owner_image" />
+                <div>
+                    <p className='text-lg md:text-xl'>{room.hotel.name}</p>
+                    <div className='mt-1 flex items-start'>
+                        <StarRating />
+                        <p className='ml-2 text-sm'>200+ Reviews</p>
+                    </div>
+                </div>
+            </div>
+                <button className='px-6 py-2.5 mt-4 rounded transition-all cursor-pointer bg-blue-300 hover:bg-amber-400 hover:rounded-full'>Book Now</button>
+        </div>
      </div>
 
 
