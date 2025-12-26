@@ -6,6 +6,7 @@ import Home from './Pages/Home'
 import Footer from './Components/Footer'
 import Allrooms from './Pages/Allrooms'
 import RoomDetails from './Pages/RoomDetails'
+import Mybookings from './Pages/Mybookings'
 
 
 
@@ -16,6 +17,7 @@ function App() {
   const [count, setCount] = useState(0)
   const isOwnerPath = useLocation().pathname.includes("/owner");
 
+
   return (
     <div>
        {!isOwnerPath && <Navbar />}
@@ -24,6 +26,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/rooms' element={<Allrooms />} />
         <Route path='/rooms/:id' element={<RoomDetails />} />
+        <Route path='/my-bookings' element={<Mybookings />} />
       </Routes>
        </div>
        <Footer />
