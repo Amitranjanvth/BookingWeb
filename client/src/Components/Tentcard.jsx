@@ -5,7 +5,7 @@ const Tentcard = (props) => {
     const {room, index} = props;
   return (
 
-      <Link className='border hover:border-gray-500 shadow-amber-400 hover:shadow-xl/30 rounded-2xl' to={'/rooms/' + room.id} key={room._id} onClick={() => window.scrollTo(0, 0)}>
+      <Link  className='border hover:border-gray-500 shadow-amber-400 hover:shadow-xl/30 rounded-2xl' to={'/rooms/'+room._id} key={room._id} onClick={() => window.scrollTo(0, 0)}>
 
       <img className='relative max-w-70 w-full rounded-xl overflow-hidden bg-white text-gray-500/90 shadow[0px_4px_4px_rgba(0,0,0,0.05)]' src={room.images[0]} alt="" />
 
