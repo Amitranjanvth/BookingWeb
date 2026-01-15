@@ -7,6 +7,7 @@ import Footer from './Components/Footer'
 import Allrooms from './Pages/Allrooms'
 import RoomDetails from './Pages/RoomDetails'
 import Mybookings from './Pages/Mybookings'
+import HotelReg from './Components/HotelReg'
 
 
 
@@ -21,6 +22,7 @@ function App() {
   return (
     <div>
        {!isOwnerPath && <Navbar />}
+       {false && <HotelReg />}
        <div>
           <Routes>
         <Route path='/' element={<Home />} />
