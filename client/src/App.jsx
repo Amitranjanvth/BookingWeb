@@ -8,6 +8,7 @@ import Allrooms from './Pages/Allrooms'
 import RoomDetails from './Pages/RoomDetails'
 import Mybookings from './Pages/Mybookings'
 import HotelReg from './Components/HotelReg'
+import Layout from './Pages/hotelOwner/Layout.jsx';
 
 
 
@@ -29,9 +30,11 @@ function App() {
         <Route path='/rooms' element={<Allrooms />} />
         <Route path='/rooms/:id' element={<RoomDetails />} />
         <Route path='/my-bookings' element={<Mybookings />} />
+        <Route path='/owner' element={<Layout />}>
+        </Route>
       </Routes>
        </div>
-       <Footer />
+       {/* <Footer /> */}
     </div>
   )
 }
