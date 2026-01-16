@@ -10,6 +10,7 @@ import Mybookings from './Pages/Mybookings'
 import HotelReg from './Components/HotelReg'
 import Layout from './Pages/hotelOwner/Layout.jsx';
 import Dashboard from './Pages/hotelOwner/Dashboard.jsx'
+import AddRoom from './Pages/hotelOwner/AddRoom.jsx'
 
 
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='/my-bookings' element={<Mybookings />} />
         <Route path='/owner' element={<Layout />}>
           <Route index element={<Dashboard />} />
+          <Route path='add-room' element={<AddRoom />} />
         </Route>
       </Routes>
        </div>
