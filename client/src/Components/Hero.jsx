@@ -3,17 +3,15 @@ import { assets, cities } from '../assets/assets'
 
 const Hero = () => {
   return (
-    <div className='flex flex-col items-start justify-center px-6 md:px-1 lg:px-24 xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-cover bg-center h-screen'>
+    <div className='flex flex-col items-start justify-center px-6 md:px-1 lg:px-24 xl:px-32 text-white bg-[url("/src/assets/wedding-785840_1920.jpg")] bg-no-repeat bg-cover bg-center h-screen brightness-90'>
       
-      <p className='px-2 py-2 rounded-full mt-20 bg-cyan-200 text-black'>the ultimate experiance</p>
+      <p className='px-4 py-2 rounded-full mt-20 bg-cyan-100 text-black text-lg'>Rooted Village Events</p>
 
-      <h1 className='font-playfair text-2xl md:text-5xl xl:text-[56px] md:leading-56px font-bold md:font-extrabold max-w-xl mt-3'></h1>
+      <h1 className='font-playfair text-xl md:text-5xl xl:text-[56px] md:leading-56px font-bold md:font-extrabold max-w-3xl mt-3 '>Welcome To EVENTWALLAH</h1>
 
-      <p className='max-w-5 mt-2 text-sm md:text-base'>hello</p>
+      <p className='max-w-3xl mt-2 text-xl md:text-lg'>Gaon ka andaaz shehar ka experience - EVENTWALLAH ke sath</p>
 
-
-
-        <form className='bg-white text-gray-500 rounded-lg px-6 py-4  flex flex-col md:flex-row max-md:items-start gap-4 max-md:mx-auto mt-6'>
+        <form className='bg-white text-gray-500 rounded-lg px-6 py-5  flex flex-col md:flex-row z-10 max-md:items-start gap-4 max-md:mx-auto mt-18 md:place-self-end-safe shadow-lg hover:shadow-orange-300 transition-all'>
 
             <div>
                 <div className='flex items-center gap-2'>
@@ -54,6 +52,9 @@ const Hero = () => {
                 <span>Search</span>
             </button>
         </form>
+
+
+   
   
     </div>
   )
