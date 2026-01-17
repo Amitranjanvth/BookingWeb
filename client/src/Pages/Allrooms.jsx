@@ -35,8 +35,8 @@ const Allrooms = () => {
       {/* left part */}
   <div>
         <div className='flex flex-col items-start text-left'>
-            <h1 className='text-4xl md:text-[40px]'>All Rooms</h1>
-            <p className='text-sm md:text-base text-gray-500/90 mt-2 max-w-174'>vvvvvvvvvvvvvvvvvvvvv</p>
+            <h1 className='text-4xl md:text-[40px]'>Wedding Spaces & Packages</h1>
+            <p className='text-sm md:text-base text-gray-500/90 mt-2 max-w-174'>Carefully selected village venues and local services with exclusive wedding packages to simplify planning</p>
         </div>
 
       {roomsDummyData.slice(0,3).map((room) => (

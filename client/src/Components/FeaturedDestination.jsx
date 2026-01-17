@@ -21,6 +21,8 @@ const FeaturedDestination = () => {
           <img src={assets.arrowIcon} alt="" />
         </button>
     </div>
+
+    
     
   )
 }

@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className='max-w-80'>
                     <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoColored.svg" alt="logo" className='mb-4 h-8 md:h-9' />
                     <p className='text-sm'>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+                       A smart platform to discover village wedding venues and plan events with trusted local vendors.
                     </p>
                     <div className='flex items-center gap-3 mt-4'>
                         {/* Instagram */}
