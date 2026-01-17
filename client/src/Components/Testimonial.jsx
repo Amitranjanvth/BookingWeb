@@ -41,7 +41,7 @@ const Testimonial = () => {
 
   return (
     <div className='fle flex-col items-center px-6 md:px-16 xl:px-24 bg-slate-50 pt-20 pb-24'>
-      <Title title='whats up' subtitle='stay tuned' />
+      <Title title='Voices from Our Weddings' subtitle='Learn why families choose us for trusted local services and hassle-free village wedding planning' />
 
             <style>{`
             @keyframes marqueeScroll {
