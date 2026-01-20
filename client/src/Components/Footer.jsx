@@ -1,11 +1,12 @@
 import React from 'react'
+import { assets } from '../assets/assets.js'
 
 const Footer = () => {
   return (
     <div className='text-gray-500/80 pt-2 px-8'>
             <div className='flex flex-wrap justify-between gap-12 md:gap-6'>
                 <div className='max-w-80'>
-                    <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoColored.svg" alt="logo" className='mb-4 h-8 md:h-9' />
+                    <img src={assets.logo} alt="logo" className='mb-2 h-12 w-28  md:h-13' />
                     <p className='text-sm'>
                        A smart platform to discover village wedding venues and plan events with trusted local vendors.
                     </p>
