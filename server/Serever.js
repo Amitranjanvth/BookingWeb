@@ -16,9 +16,11 @@ app.use(clerkMiddleware());
 app.use("/api/clerk", ClerkWebhooks);
 app.use("/api/user", userRouter);
 
-app.get('/', (req, res) => {
-  res.send('Welcome to you in this World!');
+
+app.get("/", (req, res) => {
+  res.send("Backend running");
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
