@@ -1,6 +1,6 @@
 
 
-export const getUserData = (req, res) => {
+export const getUserData =(req, res) => {
     try {
         const role = req.user.role;
         const recentSearchCity = req.user.recentSearchCity;
