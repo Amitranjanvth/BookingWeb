@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../Components/hotelOwner/Navbar.jsx';
 import Sidebar from '../../Components/hotelOwner/Sidebar.jsx';
 import { Outlet } from 'react-router-dom';
+import {useAppContext} from '../../Context/AppContext.jsx'
 
 const Layout = () => {
+
+  const {isOwner, navigate} = useAppContext();
+ useEffect(() => {
+  if(!isOwner){
+    navigate('/')
+  }
+ },[isOwner])
   return (
     <div>
       <Navbar />

@@ -12,6 +12,8 @@ import Layout from './Pages/hotelOwner/Layout.jsx';
 import Dashboard from './Pages/hotelOwner/Dashboard.jsx'
 import AddRoom from './Pages/hotelOwner/AddRoom.jsx'
 import ListRoom from './Pages/hotelOwner/ListRoom.jsx'
+import {Toaster} from 'react-hot-toast'
+import { useAppContext } from './Context/AppContext.jsx'
 
 
 
@@ -21,13 +23,15 @@ import ListRoom from './Pages/hotelOwner/ListRoom.jsx'
 function App() {
   const [count, setCount] = useState(0)
   const isOwnerPath = useLocation().pathname.includes("/owner");
+  const {showHotelReg} = useAppContext();
 
 
   return (
     <div>
        {!isOwnerPath && <Navbar />}
-       {false && <HotelReg />}
+       {showHotelReg && <HotelReg />}
        <div>
+        <Toaster />
           <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/rooms' element={<Allrooms />} />
