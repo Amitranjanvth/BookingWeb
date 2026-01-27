@@ -1,7 +1,24 @@
 import React from 'react'
 import { assets, cities } from '../assets/assets'
+import { useAppContext } from '../Context/AppContext.jsx'
+import { useState } from 'react';
 
 const Hero = () => {
+
+        const {navigate, getToken, axios, setSearchCities} = useAppContext();
+        const [destination, setDestination] = useState('')
+        const onSearch = async (e) => {
+                e.preventDefault();
+                navigate(`/rooms?destination=${destination}`)
+                await axios.post('/api/user/store-recent-search', {recentSearchedCities : destination},{headers : {Authorization : `Bearer ${await getToken()}` }} )
+                setSearchCities((prevSearch) => {
+                        const updatedSearchCities = [...prevSearch, destination]
+                        if(updatedSearchCities.length > 3){
+                                updatedSearchCities.shift();
+                        }
+                        return updatedSearchCities
+                })
+        }
 return (
     <div className='flex flex-col items-start justify-center px-6 md:px-1 lg:px-24 xl:px-32 text-white bg-[url("/src/assets/wedding-785840_1920.jpg")] bg-no-repeat bg-cover bg-center h-screen brightness-80'>
         
@@ -11,7 +28,7 @@ return (
 
         <p className='max-w-3xl mt-2 text-xl font-bold md:text-2xl bg-gradient-to-r text-black '>Gaon ka andaaz shehar ka experience - EVENTWALLAH ke sath</p>
 
-            <form className='bg-white text-gray-500 rounded-lg px-6 py-5  flex flex-col md:flex-row z-10 max-md:items-start gap-4 max-md:mx-auto mt-18 md:place-self-end-safe shadow-lg hover:shadow-orange-300 transition-all'>
+            <form onSubmit={onSearch} className='bg-white text-gray-500 rounded-lg px-6 py-5  flex flex-col md:flex-row z-10 max-md:items-start gap-4 max-md:mx-auto mt-18 md:place-self-end-safe shadow-lg hover:shadow-orange-300 transition-all'>
 
                     <div>
                             <div className='flex items-center gap-2'>
@@ -23,7 +40,7 @@ return (
                                     <option key={index} value={city} />
                                 ))  }
                             </datalist>
-                            <input list='destinations' id="destinationInput" type="text" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
+                            <input onChange={(e) => setDestination(e.target.value)} value={destination} list='destinations' id="destinationInput" type="text" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
                     </div>
 
                     <div>

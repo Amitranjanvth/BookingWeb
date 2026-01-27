@@ -1,21 +1,73 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {assets, facilityIcons, roomCommonData, roomsDummyData} from '../assets/assets.js';
+import {assets, facilityIcons, roomCommonData} from '../assets/assets.js';
 import StarRating from '../Components/StarRating.jsx';
+import { useAppContext } from '../Context/AppContext.jsx'
+import toast, { CheckmarkIcon } from 'react-hot-toast';
 
 
 const RoomDetails = () => {
 
     const {id} = useParams();
+    const {rooms, getToken, axios, navigate} = useAppContext();
     const [room, setroom] = useState(null);
     const [mainImage, setmainImage] = useState(null);
 
+    const [checkInDate, setCheckInDate] = useState(null);
+    const [checkOutDate, setCheckOutDate] = useState(null);
+    const [guests, setGuests] = useState(1);
+    const[isAvailable, setIsAvailable] = useState(false);
+
+    const checkAvailability = async() => {
+        try {
+            if(checkInDate >= checkOutDate){
+                toast.error("You Entered wrong Date");
+                return
+            }
+            const {data} = await axios.post('/api/bokkings/check-availability', {room: id, checkInDate, checkOutDate})
+            if(data.success){
+                if(data.isAvailable){
+                    setIsAvailable(true);
+                    toast.success("Room is Available...")
+                }else{
+                    setIsAvailable(false)
+                    toast.error("Room is Not Available");
+                }
+            }else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
+    const onSubmitHandler = async(e) => {
+        try {
+            e.preventDefault();
+            if(!isAvailable){
+                return checkAvailability();
+            }else{
+                const {data} = await axios.post('/api/bookings/book', {room: id, checkInDate, checkOutDate, guests, paymentMethod: 'Pay At Hotel'}, {headers : {Authorization : `Bearer ${await getToken()}` }})
+                if(data.success){
+                    toast.message(data.message)
+                    navigate('/my-bookings')
+                    scrollTo(0,0)
+                }else{
+                    toast.error(data.message)
+                }
+            }
+
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
     useEffect(() => {
-        const room = roomsDummyData.find((room =>room._id === id))
+        const room = rooms.find((room =>room._id === id))
         room && setroom(room);
         room && setmainImage(room.images[0]);
-    }, []);
+    }, [rooms]);
 
   return room && (
     <div className='py-28 md:py-35 px-4 md:px-16 lg:px-24 xl:px-32'>
@@ -65,7 +117,7 @@ const RoomDetails = () => {
 
 
 
-           <form className='bg-white mt-5 text-gray-500 rounded-lg px-2 py-4  flex flex-col md:flex-row max-md:items-start gap-6 max-md:mx-auto'>
+           <form onSubmit={onSubmitHandler} className='bg-white mt-5 text-gray-500 rounded-lg px-2 py-4  flex flex-col md:flex-row max-md:items-start gap-6 max-md:mx-auto'>
 
             <div>
                 <div className='flex items-center gap-2'>
@@ -74,7 +126,7 @@ const RoomDetails = () => {
                     </svg>
                     <label htmlFor="destinationInput">Destination</label>
                 </div>
-                <input list='destinations' id="destinationInput" type="text" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
+                <input  list='destinations' id="destinationInput" type="text" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
             </div>
 
             <div>
@@ -84,7 +136,7 @@ const RoomDetails = () => {
                     </svg>
                     <label htmlFor="checkIn">Check in</label>
                 </div>
-                <input id="checkIn" type="date" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" />
+                <input onChange={(e) => setCheckInDate(e.target.value)} min={new Date().toISOString().split('T')[0]}  id="checkIn" type="date" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" />
             </div>
 
             <div>
@@ -94,12 +146,12 @@ const RoomDetails = () => {
                     </svg>
                     <label htmlFor="checkOut">Check out</label>
                 </div>
-                <input id="checkOut" type="date" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" />
+                <input onChange={(e) => setCheckOutDate(e.target.value)} min={checkInDate} disabled={checkInDate} id="checkOut" type="date" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" />
             </div>
 
             <div className='flex md:flex-col max-md:gap-2 max-md:items-center'>
                 <label htmlFor="guests">Guests</label>
-                <input min={1} max={4} id="guests" type="number" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none  max-w-16" placeholder="0" />
+                <input onChange={(e) => setGuests(e.target.value)} value={guests} min={1} max={4} id="guests" type="number" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none  max-w-16" placeholder="0" />
             </div>
 
             <button className='flex items-center justify-center gap-2 rounded-md bg-black py-3 px-4 text-white my-auto cursor-pointer max-md:w-full max-md:py-1' >
@@ -136,7 +188,7 @@ const RoomDetails = () => {
                     </div>
                 </div>
             </div>
-                <button className='px-6 py-2.5 mt-4 rounded transition-all cursor-pointer bg-blue-300 hover:bg-amber-400 hover:rounded-full'>Book Now</button>
+                <button className='px-6 py-2.5 mt-4 rounded transition-all cursor-pointer bg-blue-300 hover:bg-amber-400 hover:rounded-full'>{isAvailable ? "Book Now" : "Check Availability"}</button>
         </div>
      </div>
 

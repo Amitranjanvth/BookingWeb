@@ -8,6 +8,7 @@ import hotelRouter from './route/hotelRoutes.js';
 import roomRouter from './route/roomRoutes.js';
 import connectCloudinary from './config/cloudinary.js';
 import bookingRouter from './route/bookingRoutes.js'
+import userRouter from './route/userRoutes.js';
 
 
 
@@ -28,6 +29,7 @@ app.use("/api/clerk", ClerkWebhooks);
 app.use('/api/hotel', hotelRouter);
 app.use('/api/rooms', roomRouter);
 app.use('/api/bookings', bookingRouter);
+app.use('/api/user', userRouter)
 
 
 

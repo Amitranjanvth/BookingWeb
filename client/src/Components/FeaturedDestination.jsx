@@ -1,19 +1,18 @@
-import React from 'react'
-import { assets, roomsDummyData } from '../assets/assets'
+import { assets} from '../assets/assets'
 import Tentcard from './Tentcard'
 import Title from './Title'
-import { useNavigate } from 'react-router-dom'
+import {useAppContext} from '../Context/AppContext.jsx'
 
 const FeaturedDestination = () => {
 
-  const navigate = useNavigate();
+  const {room, navigate} = useAppContext()
 
 
-  return (
+  return ( room.length > 0 && (
     <div className='flex flex-col items-center px-6 md:px-16 lg:px-24 bg-slate-50 py-10 leading-15 '>
       <Title title='Featured Gaon Wedding Spots' subtitle='The best village wedding venues and local services — trusted, affordable, and easy to plan, all in one place' />
       <div className='flex flex-wrap items-center justify-center gap-8 mt-16'>
-        {roomsDummyData.slice(0, 5).map((room, index) => (
+        {room.slice(0, 5).map((room, index) => (
             <Tentcard key={room._id} room={room} index={index} />
         ))}
       </div>
@@ -24,7 +23,7 @@ const FeaturedDestination = () => {
 
     
     
-  )
+  ))
 }
 
 export default FeaturedDestination
